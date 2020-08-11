@@ -9,9 +9,10 @@
 
 - Using [Python Lambda Local](https://github.com/HDE/python-lambda-local)
     ```bash
-    python-lambda-local -f lambda_handler  ./src/handlers/import.py ./local/importer_event.json 
+    python-lambda-local -f lambda_handler  ./src/import.py ./local/importer_event.json 
     ```
 
 ## Links
 
 - [pytest](https://docs.pytest.org/en/latest/contents.html)
+- [Python Naming Conventions](https://visualgit.readthedocs.io/en/latest/pages/naming_convention.html)
