@@ -12,6 +12,13 @@
     python-lambda-local -f lambda_handler  ./src/import.py ./local/importer_event.json 
     ```
 
+## Local Developement with `Docker`
+
+- Just run
+    ```bash
+    ./invoke_lambda.sh
+    ```
+
 ## Links
 
 - [pytest](https://docs.pytest.org/en/latest/contents.html)
