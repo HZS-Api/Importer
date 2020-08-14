@@ -1,9 +1,10 @@
 from model.get_html import get_html
 from value_object.Incident import Incident
 from bs4 import BeautifulSoup
+from typing import List
 
 
-def get_incidents(url: string):
+def get_incidents(url: str):
     """
     :param url: url of rss feed
     :return: list of incidents with details
@@ -12,7 +13,7 @@ def get_incidents(url: string):
     get_detailed_info_of_incident(incidents)
 
 
-def get_list_of_incidents(url: string) -> List[Incident]:
+def get_list_of_incidents(url: str) -> List[Incident]:
     """
     :param url: url of rss feed
     :return List[Incident]: list of incidents with basic info
