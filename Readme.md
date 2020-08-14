@@ -23,3 +23,4 @@
 
 - [pytest](https://docs.pytest.org/en/latest/contents.html)
 - [Python Naming Conventions](https://visualgit.readthedocs.io/en/latest/pages/naming_convention.html)
+- [Typing in Python](https://docs.python.org/3/library/typing.html)

@@ -3,12 +3,20 @@ from value_object.Incident import Incident
 from bs4 import BeautifulSoup
 
 
-def get_incidents(url):
+def get_incidents(url: string):
+    """
+    :param url: url of rss feed
+    :return: list of incidents with details
+    """
     incidents = get_list_of_incidents(url)
     get_detailed_info_of_incident(incidents)
 
 
-def get_list_of_incidents(url):
+def get_list_of_incidents(url: string) -> List[Incident]:
+    """
+    :param url: url of rss feed
+    :return List[Incident]: list of incidents with basic info
+    """
     rss_content = get_html(url)
     rss_feed = BeautifulSoup(rss_content, 'lxml-xml')
 
@@ -23,7 +31,7 @@ def get_list_of_incidents(url):
     return incidents
 
 
-def get_detailed_info_of_incident(incidents):
+def get_detailed_info_of_incident(incidents: List[Incident]):
     for incident in incidents:
         html_content = get_html(incident.get_link())
         html_parsed = BeautifulSoup(html_content, 'html.parser')
