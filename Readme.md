@@ -26,6 +26,13 @@
     ./run_tests.sh
     ```
 
+## Run Linter locally
+
+- Just run
+    ```bash
+    ./run_linter.sh
+    ```
+
 ## Links
 
 - [pytest](https://docs.pytest.org/en/latest/contents.html)

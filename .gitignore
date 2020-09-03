@@ -5,3 +5,7 @@
 # Python
 __pycache__
 venv
+package
+
+# Docker
+docker-compose.yml
