@@ -8,5 +8,5 @@ fi
 docker run \
   -v $PWD/src:/var/task/ \
   lambda \
-  import.lambda_handler \
+  /var/rapid/init --bootstrap /var/runtime/bootstrap --enable-msg-logs import.lambda_handler \
   '{"url": "https://www.hzspa.cz/vyjezdy/rss-aktualni-vyjezdy.php"}'
