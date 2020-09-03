@@ -36,8 +36,11 @@ jobs:
         pytest
     - name: zip
       uses: montudor/action-zip@v0.1.0
-      with:
-        args: zip -qq -r ./bundle.zip ./
+      run: |
+        cd ./package
+        zip -r9 ../bundle.zip .
+        cd ../
+        zip -g bundle.zip *
     - name: default deploy
       uses: appleboy/lambda-action@master
       with:
