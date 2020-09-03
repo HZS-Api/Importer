@@ -24,7 +24,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install --target ./package -r requirements.txt; fi
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -34,19 +34,12 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-    - name: zip dependencies
-      uses: montudor/action-zip@v0.1.0
-      with: 
-        args: zip -qq -r ../bundle.zip ./package
-    - name: zip code
-      uses: montudor/action-zip@v0.1.0
-      with: 
-        args: zip -qq -g ./bundle.zip .
-    - name: default deploy
-      uses: appleboy/lambda-action@master
+    - name: Deploy code to Lambda
+      uses: mariamrf/py-lambda-action@v1.0.0
       with:
-        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws_region: eu-west-1
-        function_name: hzs-importer
-        zip_file: bundle.zip
+        lambda_layer_arn: 'arn:aws:lambda:eu-west-1:782490189373:layer:hzs-importer-dependencies'
+        lambda_function_name: 'hzs-importer'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'eu-west-1'
