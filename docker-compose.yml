@@ -1,0 +1,14 @@
+version: '3'
+services:
+  lambda:
+    # build: .
+    image: "lambci/lambda:python3.6"
+    volumes:
+      - ./src:/var/task:ro,delegated
+    environment:
+      DOCKER_LAMBDA_STAY_OPEN: 1
+      DOCKER_LAMBDA_WATCH: 1
+    ports:
+      - "9001:9001"
+    command: ["import.lambda_handler"]
+        
