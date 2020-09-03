@@ -1,5 +1,5 @@
-from model.get_html import get_html
-from entity.Incident import Incident
+from src.model.get_html import get_html
+from src.entity.Incident import Incident
 from bs4 import BeautifulSoup
 from typing import List, Dict
 
