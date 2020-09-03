@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from typing import List, Dict
 
 
-def get_incidents(url: str):
+def get_incidents(url: str) -> None:
     """
     :param url: url of rss feed
     :return: list of incidents with details
@@ -46,18 +46,30 @@ def get_detailed_info_of_incident(incidents: List[Incident]) -> List[Incident]:
         html_parsed.select('table')[0].extract()
 
         attributes = get_list_of_attributes(html_parsed.findAll('p'))
-        incident.set_description(attributes['Popis'])
-        incident.set_type(attributes['Typ'])
-        incident.set_subtype(attributes['Podtyp'])
-        incident.set_region(attributes['Okres'])
-        incident.set_city(attributes['Obec'])
-        incident.set_department(attributes['Jednotky'])
-        incident.set_state(attributes['Stav'])
+        incident = set_attributes_to_incident(incident, attributes)
 
     return incidents
 
 
-def get_list_of_attributes(raw_attributes: List[str]) -> Dict[str, str]:
+def set_attributes_to_incident(incident: Incident, attributes: Dict[str, str]) -> Incident:
+    """
+    TODO: move to transformer
+    :param incident: instances of incidents
+    :param attributes: dictionary with attributes
+    :return Incident: instances of incidents with set attributes
+    """
+    incident.set_description(attributes['Popis'])
+    incident.set_type(attributes['Typ'])
+    incident.set_subtype(attributes['Podtyp'])
+    incident.set_region(attributes['Okres'])
+    incident.set_city(attributes['Obec'])
+    incident.set_department(attributes['Jednotky'])
+    incident.set_state(attributes['Stav'])
+
+    return incident
+
+
+def get_list_of_attributes(raw_attributes: List[BeautifulSoup]) -> Dict[str, str]:
     """
     :param raw_attributes: list of raw data
     :return Dict[str, str]: dictionary with keys and values
@@ -67,7 +79,7 @@ def get_list_of_attributes(raw_attributes: List[str]) -> Dict[str, str]:
         if not hasattr(raw_attribute.strong, 'text'):
             continue
 
-        key = raw_attribute.strong.text.replace(':', '')
+        key = raw_attribute.strong.text.replace(':', '').strip()
 
         raw_attribute.strong.extract()
         value = raw_attribute.text.strip()
