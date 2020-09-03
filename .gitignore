@@ -6,6 +6,10 @@
 __pycache__
 venv
 package
+.pytest_cache
 
 # Docker
 docker-compose.yml
+
+# Lambda
+*.zip
