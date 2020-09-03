@@ -1,5 +1,5 @@
-import service.get_incidents
+import src.service.get_incidents
 
 
 def lambda_handler(event, context):
-    service.get_incidents.get_incidents(event["url"])
+    src.service.get_incidents.get_incidents(event["url"])
