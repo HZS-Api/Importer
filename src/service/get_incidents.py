@@ -43,7 +43,8 @@ def get_detailed_info_of_incident(incidents: List[Incident]) -> List[Incident]:
         html_content = get_html(incident.get_link())
 
         html_parsed = BeautifulSoup(html_content, 'html.parser')
-        html_parsed.select('table')[0].extract()
+        if 'table' in html_parsed:
+            html_parsed.select('table')[0].extract()
 
         attributes = get_list_of_attributes(html_parsed.findAll('p'))
         incident = set_attributes_to_incident(incident, attributes)
