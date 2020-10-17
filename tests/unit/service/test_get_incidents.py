@@ -46,11 +46,12 @@ def test_set_attributes_to_incident():
         'Stav': 'sdfr'
     }
     result_incident: Incident = set_attributes_to_incident(incident, attributes)
+    result_data = result_incident.get_data()
 
-    assert result_incident.get_description() == attributes['Popis']
-    assert result_incident.get_type() == attributes['Typ']
-    assert result_incident.get_subtype() == attributes['Podtyp']
-    assert result_incident.get_region() == attributes['Okres']
-    assert result_incident.get_city() == attributes['Obec']
-    assert result_incident.get_department() == attributes['Jednotky']
-    assert result_incident.get_state() == attributes['Stav']
+    assert result_data['description'] == attributes['Popis']
+    assert result_data['type'] == attributes['Typ']
+    assert result_data['subtype'] == attributes['Podtyp']
+    assert result_data['region'] == attributes['Okres']
+    assert result_data['city'] == attributes['Obec']
+    assert result_data['department'] == attributes['Jednotky']
+    assert result_data['state'] == attributes['Stav']
