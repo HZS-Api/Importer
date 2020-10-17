@@ -1,3 +1,5 @@
+from typing import Dict
+
 class Incident(object):
     __title = ''
     __link = ''
@@ -40,32 +42,19 @@ class Incident(object):
     def set_state(self, state: str):
         self.__state = state
 
-    def get_title(self) -> str:
-        return self.__title
-
     def get_link(self) -> str:
         return self.__link
 
-    def get_pub_date(self) -> str:
-        return self.__pub_date
-
-    def get_description(self) -> str:
-        return self.__description
-
-    def get_type(self) -> str:
-        return self.__type
-
-    def get_subtype(self) -> str:
-        return self.__subtype
-
-    def get_region(self) -> str:
-        return self.__region
-
-    def get_city(self) -> str:
-        return self.__city
-
-    def get_department(self) -> str:
-        return self.__department
-
-    def get_state(self) -> str:
-        return self.__state
+    def get_data(self) -> Dict[str, str]:
+        return {
+            'title': self.__title,
+            'link': self.__link,
+            'pub_date': self.__pub_date,
+            'description': self.__description,
+            'type': self.__type,
+            'subtype': self.__subtype,
+            'region': self.__region,
+            'city': self.__city,
+            'department': self.__department,
+            'state': self.__state
+        }

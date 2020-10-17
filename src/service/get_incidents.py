@@ -4,14 +4,15 @@ from bs4 import BeautifulSoup
 from typing import List, Dict
 
 
-def get_incidents(url: str) -> None:
+def get_incidents(url: str) -> List[Incident]:
     """
     :param url: url of rss feed
     :return: list of incidents with details
     """
     incidents = get_list_of_incidents(url)
     full_incidents = get_detailed_info_of_incident(incidents)
-    print(full_incidents)
+
+    return full_incidents
 
 
 def get_list_of_incidents(url: str) -> List[Incident]:

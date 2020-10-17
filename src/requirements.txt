@@ -3,7 +3,6 @@ certifi==2020.6.20
 chardet==3.0.4
 click==7.1.2
 idna==2.10
-injector==0.18.4
 itsdangerous==1.1.0
 Jinja2==2.11.2
 lxml==4.5.2
